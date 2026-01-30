@@ -58,11 +58,13 @@ export const DEFAULT_ITEMS = [
 
 // Firebase Configuration
 export const firebaseConfig = {
-  apiKey: "AIzaSyAU65_k8Oa1XuoQVncMI06DPzFjOWR1kTA",
-  authDomain: "aguilera-92c41.firebaseapp.com",
-  databaseURL: "https://aguilera-92c41-default-rtdb.firebaseio.com",
-  projectId: "aguilera-92c41",
-  storageBucket: "aguilera-92c41.firebasestorage.app",
-  messagingSenderId: "860409156098",
-  appId: "1:860409156098:web:7f209ba10e99466fabcd1b"
+  apiKey: "AIzaSyBQxPqm8G3EXAsZEOQxCuxUOQa5LDtGlbg",
+  authDomain: "aguilera-familia.firebaseapp.com",
+  databaseURL: "https://aguilera-familia-default-rtdb.firebaseio.com",
+  projectId: "aguilera-familia",
+  storageBucket: "aguilera-familia.firebasestorage.app",
+  messagingSenderId: "565624960147",
+  appId: "1:565624960147:web:76b123ec369ba0bf220966",
+  measurementId: "G-ZENVYWBT20"
+
 };
