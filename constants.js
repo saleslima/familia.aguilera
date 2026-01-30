@@ -66,5 +66,4 @@ export const firebaseConfig = {
   messagingSenderId: "565624960147",
   appId: "1:565624960147:web:76b123ec369ba0bf220966",
   measurementId: "G-ZENVYWBT20"
-
 };

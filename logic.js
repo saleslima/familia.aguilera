@@ -3,7 +3,6 @@ import * as DOM from "./dom.js";
 import * as UI from "./ui.js";
 import { DB_REF, STORAGE_KEY_V3, STORAGE_KEY_VIEW, STORAGE_KEY_DARK_MODE, PASSWORD, DEFAULT_COLORS } from "./constants.js";
 import { db } from "./firebase-setup.js";
-import { ref, set, onValue, runTransaction } from "https://esm.sh/firebase/database";
 
 export function init() {
     UI.applySettings(state.currentTheme);
@@ -17,18 +16,18 @@ export function init() {
 let hasIncrementedPageViews = false;
 
 export function initCloudSync() {
-    const dbRef = ref(db, DB_REF);
+    const dbRef = db.ref(DB_REF);
     
     // Increment page views atomically on first load
     if (!hasIncrementedPageViews) {
         hasIncrementedPageViews = true;
-        const pageViewsRef = ref(db, `${DB_REF}/pageViews`);
-        runTransaction(pageViewsRef, (currentValue) => {
+        const pageViewsRef = db.ref(`${DB_REF}/pageViews`);
+        pageViewsRef.transaction((currentValue) => {
             return (currentValue || 0) + 1;
         });
     }
     
-    onValue(dbRef, (snapshot) => {
+    dbRef.on('value', (snapshot) => {
         const data = snapshot.val();
         
         if (data) {
@@ -83,7 +82,7 @@ export async function saveToCloud() {
     localStorage.setItem(STORAGE_KEY_V3, JSON.stringify(state.categories));
     
     try {
-        await set(ref(db, DB_REF), {
+        await db.ref(DB_REF).set({
             categories: state.categories,
             urgentMessage: state.urgentMessage,
             urgentBlinkSpeed: state.urgentBlinkSpeed,
