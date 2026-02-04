@@ -24,10 +24,9 @@ export function renderCategories() {
     DOM.navTrack.innerHTML = '';
     DOM.navControls.innerHTML = '';
     
-    // Duplicate list for seamless scrolling if we have items
+    // Render list of categories
     if (state.categories.length > 0) {
-        // Create the items list (duplicated for loop)
-        const itemsToRender = [...state.categories, ...state.categories];
+        const itemsToRender = state.categories;
         
         itemsToRender.forEach((cat) => {
             const navItem = document.createElement('button');
