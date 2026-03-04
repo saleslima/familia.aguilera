@@ -373,15 +373,21 @@ export function performSearch(query) {
 
     const lowerQuery = query.toLowerCase();
     const allItems = [];
-    state.categories.forEach(cat => {
-        cat.items.forEach(item => {
-            allItems.push(item);
+
+    // Ensure categories exists and is iterable
+    if (Array.isArray(state.categories)) {
+        state.categories.forEach(cat => {
+            if (cat && Array.isArray(cat.items)) {
+                cat.items.forEach(item => {
+                    allItems.push(item);
+                });
+            }
         });
-    });
+    }
 
     const results = allItems.filter(item => 
-        item.label.toLowerCase().includes(lowerQuery) || 
-        item.message.toLowerCase().includes(lowerQuery)
+        (item.label && item.label.toLowerCase().includes(lowerQuery)) || 
+        (item.message && item.message.toLowerCase().includes(lowerQuery))
     );
 
     UI.renderSearchResults(results);
