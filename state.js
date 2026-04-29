@@ -12,7 +12,8 @@ export const state = {
     isDocsAdmin: false,
     hasUnsavedChanges: false,
     pageViews: 0,
-    isDarkMode: false
+    isDarkMode: false,
+    isCarouselPlaying: false
 };
 
 export function initLocalState() {
@@ -35,7 +36,7 @@ function loadLocalData() {
     return [
         {
             id: 'default_notas190',
-            name: 'NOTAS 190',
+            name: 'Família Aguilera',
             items: DEFAULT_ITEMS
         }
     ];

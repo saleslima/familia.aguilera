@@ -421,6 +421,12 @@ export function toggleDarkMode() {
     UI.applyDarkMode();
 }
 
+// Carousel Toggle
+export function toggleCarousel() {
+    state.isCarouselPlaying = !state.isCarouselPlaying;
+    UI.applyCarouselState();
+}
+
 // Docs Admin Mode
 export function toggleDocsAdmin() {
     if (state.isDocsAdmin) {
@@ -486,6 +492,9 @@ export function setupEventListeners() {
     
     // Dark Mode Toggle
     DOM.darkModeToggle.addEventListener('click', toggleDarkMode);
+
+    // Carousel Toggle
+    DOM.carouselToggle.addEventListener('click', toggleCarousel);
 
     // Urgent
     DOM.urgentBtn.addEventListener('click', handleUrgentClick);

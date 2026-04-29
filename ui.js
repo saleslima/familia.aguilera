@@ -24,6 +24,9 @@ export function renderCategories() {
     DOM.navTrack.innerHTML = '';
     DOM.navControls.innerHTML = '';
     
+    // Apply carousel state after rendering
+    applyCarouselState();
+    
     // Render list of categories
     if (state.categories.length > 0) {
         const itemsToRender = state.categories;
@@ -265,6 +268,17 @@ export function applyDarkMode() {
     }
     const icon = DOM.darkModeToggle.querySelector('i');
     icon.className = state.isDarkMode ? 'fas fa-sun' : 'fas fa-moon';
+}
+
+// Carousel State
+export function applyCarouselState() {
+    if (state.isCarouselPlaying) {
+        DOM.navTrack.classList.add('playing');
+    } else {
+        DOM.navTrack.classList.remove('playing');
+    }
+    const icon = DOM.carouselToggle.querySelector('i');
+    icon.className = state.isCarouselPlaying ? 'fas fa-pause' : 'fas fa-play';
 }
 
 // Urgent
