@@ -27,23 +27,24 @@ export function renderCategories() {
     // Apply carousel state after rendering
     applyCarouselState();
     
-    // Render list of categories
+    // Render list of categories (duplicate for seamless infinite scroll)
     if (state.categories.length > 0) {
-        const itemsToRender = state.categories;
-        
-        itemsToRender.forEach((cat) => {
-            const navItem = document.createElement('button');
-            navItem.dataset.realId = cat.id; 
-            navItem.className = `nav-item ${cat.id === state.activeCategoryId ? 'active' : ''}`;
-            navItem.textContent = cat.name;
-            
-            navItem.addEventListener('click', () => {
-                state.activeCategoryId = cat.id;
-                DOM.searchInput.value = ''; // Clear search when changing category
-                renderAll();
+        // Render categories twice for infinite scroll effect
+        for (let i = 0; i < 2; i++) {
+            state.categories.forEach((cat) => {
+                const navItem = document.createElement('button');
+                navItem.dataset.realId = cat.id; 
+                navItem.className = `nav-item ${cat.id === state.activeCategoryId ? 'active' : ''}`;
+                navItem.textContent = cat.name;
+                
+                navItem.addEventListener('click', () => {
+                    state.activeCategoryId = cat.id;
+                    DOM.searchInput.value = ''; // Clear search when changing category
+                    renderAll();
+                });
+                DOM.navTrack.appendChild(navItem);
             });
-            DOM.navTrack.appendChild(navItem);
-        });
+        }
     }
 
     // Admin Controls (Fixed Position)
