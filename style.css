@@ -281,13 +281,15 @@ h1 {
     gap: 1.5rem;
     padding: 0.5rem 2rem;
     width: max-content;
+    animation: scroll 30s linear infinite;
+    animation-play-state: paused;
 }
 
 .category-track.playing {
-    animation: scroll 30s linear infinite;
+    animation-play-state: running;
 }
 
-.nav-scroll-mask:hover .category-track {
+.nav-scroll-mask:hover .category-track.playing {
     animation-play-state: paused;
 }
 
